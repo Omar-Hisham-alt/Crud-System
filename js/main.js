@@ -14,7 +14,7 @@ if (localStorage.getItem('productsList') != null) {
 }
 
 function addProduct() {
-    var imgName = productImgInput.files[0].name;
+    var imgName = productImgInput.files[0]?.name;
 
     var product = {
         name: productNameInput.value,
@@ -38,6 +38,7 @@ function clearForm() {
     productPriceInput.value = '';
     productCategoryInput.value = '';
     productDescriptionInput.value = '';
+    productImgInput.value = '';
 }
 
 function displayProducts() {
@@ -46,7 +47,7 @@ function displayProducts() {
     for (var i = 0; i < products.length; i++) {
         box += `<div class="my-card col-md-6 col-lg-4 col-xl-3">
                     <div class="inner shadow-lg rounded-3 overflow-hidden">
-                        <img class="w-100" src="${products[i].image}" alt="">
+                        <img class="w-100" src="${products[i].image}" alt="${products[i].name}">
                         <div class="card-body p-2">
                             <span class="badge text-bg-info text-white">index : ${i}</span>
                             <h5>Product Name : ${products[i].name}</h5>
@@ -79,7 +80,7 @@ function searchProduct() {
         if (products[i].name.toLowerCase().includes(searchValue.toLowerCase())) {
             box += `<div class="my-card col-md-6 col-lg-4 col-xl-3">
                     <div class="inner shadow-lg rounded-3 overflow-hidden">
-                        <img class="w-100" src="${products[i].image}" alt="">
+                        <img class="w-100" src="${products[i].image}" alt="${products[i].name}">
                         <div class="card-body p-2">
                             <span class="badge text-bg-info text-white">index : ${i}</span>
                             <h5>Product Name : ${products[i].name}</h5>
@@ -95,4 +96,6 @@ function searchProduct() {
                 </div>`
         }
     }
+
+    document.getElementById('my-rows').innerHTML = box;
 }
