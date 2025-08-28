@@ -14,7 +14,7 @@ if (localStorage.getItem('productsList') != null) {
 }
 
 function addProduct() {
-    var imgName = productImgInput.files[0]?.name;
+    var imgName = productImgInput.files[0]? productImgInput.files[0].name : 'imgi_28_06.jpg';
 
     var product = {
         name: productNameInput.value,
